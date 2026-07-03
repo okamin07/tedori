@@ -51,7 +51,7 @@ export default function RootLayout({
       lang="ja"
       className={`${notoSansJP.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-screen antialiased">{children}</body>
     </html>
   );
 }

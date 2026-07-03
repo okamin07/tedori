@@ -7,6 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, lastModified: now, changeFrequency: "weekly", priority: 1 },
     {
+      url: `${SITE_URL}/simulate`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/media`,
       lastModified: now,
       changeFrequency: "weekly",

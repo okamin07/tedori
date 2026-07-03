@@ -34,6 +34,126 @@ body {
   line-height: 1.6;
 }
 
+.page-pad {
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .page-pad {
+    padding: 1.75rem 1.5rem 3rem;
+  }
+}
+
+.page-title {
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+@media (min-width: 640px) {
+  .page-title {
+    font-size: 1.625rem;
+  }
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-ink-2);
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-link:hover {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+.sidebar-link--active {
+  background: var(--color-brand-soft);
+  color: var(--color-brand);
+}
+
+.btn-primary {
+  display: inline-block;
+  border-radius: 0.5rem;
+  background: var(--color-brand);
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-hover);
+}
+
+.search-input {
+  border-radius: 0.625rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgb(79 70 229 / 12%);
+}
+
+.article-card {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.article-card:hover {
+  border-color: rgb(79 70 229 / 25%);
+  box-shadow: 0 12px 28px rgb(17 24 39 / 8%);
+}
+
+.article-card-cover {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.article-tag {
+  display: inline-block;
+  border-radius: 9999px;
+  background: var(--color-bg);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-ink-2);
+}
+
+.settings-tab {
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.settings-tab--active {
+  border-bottom-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
 .num {
   font-family: var(--font-sans);
   font-variant-numeric: tabular-nums lining-nums;

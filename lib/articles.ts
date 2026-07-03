@@ -12,6 +12,9 @@ export interface Article {
   updated: string;
   affiliateIds: string[];
   sections: ArticleSection[];
+  coverFrom: string;
+  coverTo: string;
+  filterTag: string;
 }
 
 export const ARTICLES: Article[] = [
@@ -24,6 +27,9 @@ export const ARTICLES: Article[] = [
     readMin: 6,
     updated: "2026-07-03",
     affiliateIds: ["accounting", "kaigyo"],
+    coverFrom: "#6366f1",
+    coverTo: "#818cf8",
+    filterTag: "基礎知識",
     sections: [
       {
         heading: "副業の「所得」とは何か",
@@ -57,6 +63,9 @@ export const ARTICLES: Article[] = [
     readMin: 7,
     updated: "2026-07-03",
     affiliateIds: ["kaigyo", "accounting"],
+    coverFrom: "#0ea5e9",
+    coverTo: "#38bdf8",
+    filterTag: "確定申告",
     sections: [
       {
         heading: "65万円控除の4条件",
@@ -90,6 +99,9 @@ export const ARTICLES: Article[] = [
     readMin: 6,
     updated: "2026-07-03",
     affiliateIds: ["accounting", "tax-advisor"],
+    coverFrom: "#8b5cf6",
+    coverTo: "#a78bfa",
+    filterTag: "フリーランス",
     sections: [
       {
         heading: "国民年金と国民健康保険",
@@ -117,4 +129,11 @@ export const ARTICLES: Article[] = [
 
 export function getArticle(slug: string): Article | undefined {
   return ARTICLES.find((a) => a.slug === slug);
+}
+
+export const ARTICLE_FILTERS = ["すべて", "確定申告", "基礎知識", "フリーランス", "節税", "社会保険"] as const;
+
+export function formatArticleDate(iso: string) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 }

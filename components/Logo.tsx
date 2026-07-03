@@ -7,29 +7,15 @@ export function Logo({ className = "" }: { className?: string }) {
       className={className}
       aria-label="TEDORI"
     >
-      <defs>
-        <linearGradient id="logo-grad-a" x1="0" y1="0" x2="20" y2="28">
-          <stop stopColor="#5B6CFF" />
-          <stop offset="1" stopColor="#3B4ED8" />
-        </linearGradient>
-        <linearGradient id="logo-grad-b" x1="8" y1="4" x2="24" y2="28">
-          <stop stopColor="#8B5CF6" />
-          <stop offset="1" stopColor="#6366F1" />
-        </linearGradient>
-      </defs>
-      <path d="M4 24L14 4L24 24H19L17 19H11L9 24H4Z" fill="url(#logo-grad-a)" />
-      <path d="M12 8L16 16H8L12 8Z" fill="#fff" fillOpacity="0.35" />
-      <path
-        d="M22 26L30 8L38 26H34.2L32.6 22H27.4L25.8 26H22Z"
-        fill="url(#logo-grad-b)"
-        opacity="0.92"
-      />
+      <rect x="2" y="18" width="5" height="10" rx="1" fill="#6366F1" opacity="0.45" />
+      <rect x="9" y="12" width="5" height="16" rx="1" fill="#6366F1" opacity="0.7" />
+      <rect x="16" y="6" width="5" height="22" rx="1" fill="#4F46E5" />
       <text
-        x="46"
+        x="28"
         y="22"
         fill="currentColor"
         fontFamily="system-ui, sans-serif"
-        fontSize="18"
+        fontSize="17"
         fontWeight="700"
         letterSpacing="-0.04em"
       >
