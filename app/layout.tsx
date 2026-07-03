@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, IBM_Plex_Mono } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -7,13 +7,6 @@ const notoSansJP = Noto_Sans_JP({
   variable: "--font-jp",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-num",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -56,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      className={`${notoSansJP.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
