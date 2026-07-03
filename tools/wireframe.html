@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TEDORI ワイヤーフレーム（参照）</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Hiragino Sans", system-ui, sans-serif; background: #f4f6f9; color: #111827; line-height: 1.5; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 24px; }
+    header { background: #fff; border-bottom: 1px solid #e5e7eb; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg,#5B6CFF,#3B4ED8); border-radius: 6px; }
+    nav a { font-size: 13px; font-weight: 600; color: #4b5563; margin-left: 24px; text-decoration: none; }
+    nav a.active { color: #3b4ed8; border-bottom: 2px solid #3b4ed8; padding-bottom: 2px; }
+    h1 { font-size: 28px; margin-top: 8px; }
+    .muted { color: #9ca3af; font-size: 13px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 8px 24px rgb(17 24 39 / 6%); padding: 24px; margin-top: 20px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; }
+    .big-green { font-size: 48px; font-weight: 700; color: #10b981; }
+    .compare-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: stretch; }
+    .scenario { padding: 24px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; color: #fff; background: #3b4ed8; }
+    .badge.alt { background: #eff6ff; color: #3b82f6; }
+    .amount { font-size: 32px; font-weight: 700; margin-top: 12px; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 20px; }
+    .stat { border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px; text-align: center; font-size: 12px; }
+    .arrow { width: 40px; height: 40px; border: 1px solid #e5e7eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 14px 20px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    th:first-child, td:first-child { text-align: left; }
+    th { background: #fafbfc; color: #9ca3af; font-size: 12px; }
+    .pos { color: #10b981; font-weight: 700; }
+    .bar-row { margin: 16px 0; }
+    .bar { height: 8px; border-radius: 999px; background: #e5e7eb; overflow: hidden; margin: 6px 0; }
+    .bar > span { display: block; height: 100%; border-radius: 999px; background: #3b4ed8; }
+    .bar.alt > span { background: #93c5fd; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><div class="logo-mark"></div> TEDORI</div>
+    <nav><a href="#" class="active">比較</a><a href="#">読みもの</a></nav>
+  </header>
+  <div class="wrap">
+    <p class="muted">2025年分（令和7年）概算</p>
+    <h1>2つのシナリオを、並べて比較</h1>
+
+    <div class="card hero-grid">
+      <div>
+        <p class="muted">年間の差額</p>
+        <p class="big-green">+131,365円</p>
+        <p style="margin-top:8px;font-size:14px;color:#4b5563">青色申告の方が有利です</p>
+      </div>
+      <div style="text-align:center">
+        <p class="muted">月換算で</p>
+        <p style="font-size:20px;font-weight:700">+10,947円</p>
+        <p class="muted" style="margin-top:12px">おすすめ度 ★★★★☆</p>
+      </div>
+      <div style="text-align:right;color:#10b981">[トレンドグラフ]</div>
+    </div>
+
+    <div class="compare-row" style="margin-top:20px">
+      <div class="card scenario">
+        <span class="badge">現在</span>
+        <p style="margin-top:16px;font-weight:600">青色申告（65万円控除）</p>
+        <p class="amount">3,017,211円</p>
+        <div class="stats">
+          <div class="stat">実効税率<br><strong>24.6%</strong></div>
+          <div class="stat">税金<br><strong>365,669円</strong></div>
+          <div class="stat">社会保険料<br><strong>617,120円</strong></div>
+        </div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="card scenario">
+        <span class="badge alt">もしも</span>
+        <p style="margin-top:16px;font-weight:600">白色申告</p>
+        <p class="amount">2,885,846円</p>
+        <div class="stats">
+          <div class="stat">実効税率<br><strong>27.9%</strong></div>
+          <div class="stat">税金<br><strong>497,034円</strong></div>
+          <div class="stat">社会保険料<br><strong>617,120円</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h2 style="font-size:15px">内訳の比較（年間）</h2>
+      <div class="bar-row">
+        <strong>手取り</strong> <span class="pos" style="float:right">+131,365円</span>
+        <div class="bar"><span style="width:100%"></span></div>
+        <div class="bar alt"><span style="width:96%"></span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;padding:0;overflow:hidden">
+      <h2 style="font-size:15px;padding:16px 20px;border-bottom:1px solid #e5e7eb">項目別の差分一覧（年間）</h2>
+      <table>
+        <thead><tr><th>項目</th><th>現在</th><th>もしも</th><th>差分</th></tr></thead>
+        <tbody>
+          <tr><td>手取り</td><td>3,017,211円</td><td>2,885,846円</td><td class="pos">+131,365円</td></tr>
+          <tr><td>税金</td><td>365,669円</td><td>497,034円</td><td class="pos">-131,365円</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
