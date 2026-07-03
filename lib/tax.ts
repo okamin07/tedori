@@ -285,6 +285,10 @@ export function sideRevenueSteps(
   return rows;
 }
 
+export function blueDeduction(filing: FilingType): number {
+  return BLUE_DEDUCTION[filing];
+}
+
 /** 申告区分を変えた場合の比較用ラベル */
 export function alternateFiling(current: FilingType): {
   filing: FilingType;

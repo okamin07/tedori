@@ -1,26 +1,29 @@
 import Link from "next/link";
+import { Logo } from "./Logo";
 import { TAX_YEAR_LABEL } from "@/lib/tax";
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-line bg-surface">
-      <div className="mx-auto max-w-lg px-4 py-8 sm:max-w-2xl">
-        <div className="flex justify-between gap-4 text-[13px] text-ink-2">
-          <p className="font-semibold text-ink">TEDORI</p>
-          <nav className="flex gap-4">
-            <Link href="/#simulator" className="hover:text-brand">
-              比較
-            </Link>
-            <Link href="/media" className="hover:text-brand">
-              読みもの
-            </Link>
-          </nav>
+    <footer className="border-t border-line bg-surface">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:justify-between sm:px-6">
+        <div>
+          <Logo className="h-7 w-auto text-ink" />
+          <p className="mt-3 max-w-xs text-[13px] text-ink-2">
+            副業・独立の手取りを、2シナリオで並べて比較。
+          </p>
         </div>
-        <p className="mt-6 text-[11px] leading-relaxed text-muted">
-          {TAX_YEAR_LABEL}に基づく概算。実際の税額・保険料は個別事情により異なります。
-        </p>
-        <p className="mt-2 text-[11px] text-muted">© {new Date().getFullYear()} TEDORI</p>
+        <nav className="flex gap-6 text-[13px] font-semibold text-ink-2">
+          <Link href="/#simulator" className="hover:text-brand">
+            比較
+          </Link>
+          <Link href="/media" className="hover:text-brand">
+            読みもの
+          </Link>
+        </nav>
       </div>
+      <p className="border-t border-line px-4 py-4 text-center text-[11px] text-muted sm:px-6">
+        {TAX_YEAR_LABEL}概算 · © {new Date().getFullYear()} TEDORI
+      </p>
     </footer>
   );
 }

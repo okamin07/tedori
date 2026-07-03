@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #f8f9fb;
+  --color-bg: #f1f5f9;
+  --color-bg-mesh: #eef2ff;
   --color-surface: #ffffff;
-  --color-ink: #0f1419;
-  --color-ink-2: #536471;
-  --color-muted: #8b98a5;
-  --color-line: #e7ecf0;
-  --color-line-strong: #cfd9de;
+  --color-ink: #0f172a;
+  --color-ink-2: #475569;
+  --color-muted: #94a3b8;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
 
-  --color-brand: #1d9bf0;
-  --color-brand-soft: #e8f5fd;
-  --color-positive: #0f7b4a;
-  --color-positive-soft: #e6f4ed;
-  --color-negative: #c62828;
-  --color-negative-soft: #fce8e8;
+  --color-brand: #4f46e5;
+  --color-brand-hover: #4338ca;
+  --color-brand-soft: #eef2ff;
+  --color-alt: #0ea5e9;
+  --color-alt-soft: #e0f2fe;
+  --color-positive: #059669;
+  --color-positive-soft: #d1fae5;
+  --color-negative: #dc2626;
+  --color-negative-soft: #fee2e2;
 
-  --color-bar-tax: #536471;
-  --color-bar-social: #8b98a5;
-  --color-bar-home: #1d9bf0;
+  --color-bar-tax: #64748b;
+  --color-bar-social: #94a3b8;
+  --color-bar-home: #4f46e5;
 
-  --font-sans: var(--font-jp), "Hiragino Sans", sans-serif;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 4%), 0 8px 24px rgb(15 23 42 / 6%);
+  --shadow-card-lg: 0 4px 6px rgb(15 23 42 / 4%), 0 20px 40px rgb(15 23 42 / 8%);
+
+  --font-sans: var(--font-jp), "Hiragino Sans", system-ui, sans-serif;
 }
 
 html {
@@ -29,6 +36,9 @@ html {
 
 body {
   background: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgb(99 102 241 / 12%), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgb(14 165 233 / 8%), transparent);
   color: var(--color-ink);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -38,51 +48,86 @@ body {
   font-family: var(--font-sans);
   font-variant-numeric: tabular-nums lining-nums;
   font-feature-settings: "tnum", "lnum";
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+}
+
+/* SaaS カード */
+.saas-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+}
+.saas-card-lg {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-card-lg);
+}
+.saas-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-card);
+}
+.saas-panel--primary {
+  background: linear-gradient(165deg, #fff 0%, var(--color-brand-soft) 100%);
+}
+.saas-panel--alt {
+  background: linear-gradient(165deg, #fff 0%, var(--color-alt-soft) 100%);
+}
+
+.section-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
 /* モード切替 */
 .seg-track {
-  display: flex;
+  display: inline-flex;
   gap: 0.25rem;
   padding: 0.25rem;
-  background: var(--color-line);
+  background: rgb(255 255 255 / 80%);
+  border: 1px solid var(--color-line);
   border-radius: 0.75rem;
+  box-shadow: var(--shadow-card);
 }
 .seg-btn {
-  flex: 1;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 1rem;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-ink-2);
   border-radius: 0.5rem;
-  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  transition: all 0.15s;
 }
 .seg-btn[data-active="true"] {
-  background: var(--color-surface);
-  color: var(--color-ink);
-  box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+  background: var(--color-brand);
+  color: #fff;
+  box-shadow: 0 2px 8px rgb(79 70 229 / 35%);
 }
 
-/* プリセットチップ */
 .chip {
-  padding: 0.375rem 0.75rem;
+  padding: 0.4rem 0.875rem;
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--color-ink-2);
-  background: var(--color-surface);
-  border: 1px solid var(--color-line-strong);
+  background: rgb(255 255 255 / 90%);
+  border: 1px solid var(--color-line);
   border-radius: 9999px;
   white-space: nowrap;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
+  transition: all 0.15s;
 }
 .chip[data-active="true"] {
   border-color: var(--color-brand);
   color: var(--color-brand);
   background: var(--color-brand-soft);
+  box-shadow: 0 0 0 3px rgb(79 70 229 / 12%);
 }
 
-/* 入力フィールド */
 .field-row {
   display: flex;
   align-items: center;
@@ -95,40 +140,35 @@ body {
   border-bottom: none;
 }
 
-/* 固定ヘッダー（手取り） */
-.sticky-hero {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-line);
+.input-field {
+  width: 8.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-bg);
+  padding: 0.5rem 0.625rem;
+  text-align: right;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input-field:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgb(79 70 229 / 15%);
 }
 
-/* 積み上げバー */
 .breakdown-bar {
   display: flex;
-  height: 0.75rem;
+  height: 1rem;
   border-radius: 9999px;
   overflow: hidden;
   background: var(--color-line);
+  box-shadow: inset 0 1px 2px rgb(15 23 42 / 6%);
 }
 .breakdown-seg {
-  transition: flex-grow 0.25s ease;
+  transition: flex-grow 0.3s ease;
 }
 
-/* 比較カード */
-.compare-grid {
-  display: grid;
-  gap: 0.75rem;
-}
-@media (min-width: 640px) {
-  .compare-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ステップ表 */
 .step-table {
   width: 100%;
   border-collapse: collapse;
@@ -136,7 +176,7 @@ body {
 }
 .step-table th,
 .step-table td {
-  padding: 0.625rem 0.5rem;
+  padding: 0.625rem 0.75rem;
   text-align: right;
   border-bottom: 1px solid var(--color-line);
 }
@@ -148,10 +188,13 @@ body {
   font-weight: 600;
   color: var(--color-muted);
   font-size: 0.6875rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.step-table tbody tr:hover {
+  background: var(--color-brand-soft);
 }
 
-/* 記事リスト（コンパクト） */
 .article-row {
   display: block;
   padding: 0.875rem 0;

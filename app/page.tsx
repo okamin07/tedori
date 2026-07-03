@@ -13,8 +13,7 @@ const jsonLd = {
       name: "TEDORI",
       applicationCategory: "FinanceApplication",
       operatingSystem: "Web",
-      description:
-        "副業・フリーランスの手取りをシナリオ比較。申告区分や売上の変化による差分を並べて試算。",
+      description: "副業・独立の手取りを2シナリオで比較。レーダーチャートと差分表で申告区分の違いを可視化。",
       offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
       inLanguage: "ja",
       url: SITE_URL,
@@ -31,25 +30,29 @@ export default function Home() {
       />
       <Header />
       <main className="flex-1">
-        <div className="mx-auto max-w-lg px-4 py-6 sm:max-w-2xl sm:py-8">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
           <Simulator />
         </div>
 
-        <section className="border-t border-line bg-surface">
-          <div className="mx-auto max-w-lg px-4 py-8 sm:max-w-2xl">
+        <section className="border-t border-line bg-surface/60">
+          <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
             <div className="flex items-baseline justify-between">
-              <h2 className="text-[13px] font-semibold text-ink">読みもの</h2>
-              <Link href="/media" className="text-[12px] text-brand hover:underline">
-                すべて
+              <h2 className="text-sm font-bold text-ink">読みもの</h2>
+              <Link href="/media" className="text-[13px] font-semibold text-brand hover:underline">
+                すべて →
               </Link>
             </div>
-            <div className="mt-2">
+            <div className="mt-4 grid gap-0 sm:grid-cols-2 sm:gap-6">
               {ARTICLES.slice(0, 2).map((a) => (
-                <Link key={a.slug} href={`/media/${a.slug}`} className="article-row group block">
-                  <p className="text-[15px] font-medium text-ink group-hover:text-brand">
-                    {a.title}
+                <Link
+                  key={a.slug}
+                  href={`/media/${a.slug}`}
+                  className="article-row group rounded-xl px-2 transition hover:bg-brand-soft/50"
+                >
+                  <p className="font-semibold text-ink group-hover:text-brand">{a.title}</p>
+                  <p className="mt-1 text-[12px] text-muted">
+                    {a.readMin}分 · {a.category}
                   </p>
-                  <p className="mt-0.5 text-[12px] text-muted">{a.readMin}分 · {a.category}</p>
                 </Link>
               ))}
             </div>

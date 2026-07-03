@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: SITE_DESC,
     url: SITE_URL,
   },
-  twitter: { card: "summary_large_image", title: "TEDORI｜手取り試算", description: SITE_DESC },
+  twitter: { card: "summary_large_image", title: "TEDORI｜手取りのもしも比較", description: SITE_DESC },
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
 };
