@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Õêüéó¹nKÖŠ">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f3ff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect x="100" y="90" width="600" height="270" rx="20" fill="#fff" stroke="#ddd6fe" stroke-width="2"/>
+  <text x="140" y="145" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#5b21b6">ò
+</text>
+  <rect x="140" y="160" width="520" height="16" rx="8" fill="#7c3aed" opacity="0.9"/>
+  <text x="140" y="210" font-family="system-ui,sans-serif" font-size="16" fill="#6b7280"> L» / Ñ / >Ýz</text>
+  <rect x="140" y="230" width="520" height="16" rx="8" fill="#c4b5fd"/>
+  <text x="140" y="300" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#4c1d95">KÖŠ</text>
+  <rect x="140" y="315" width="360" height="20" rx="10" fill="#8b5cf6"/>
+</svg>

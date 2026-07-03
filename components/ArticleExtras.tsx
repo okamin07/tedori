@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { formatArticleDate, getRelatedArticles, type Article } from "@/lib/articles";
+import { getArticleReferences } from "@/lib/articles/references";
 import { SITE_URL } from "@/lib/site";
+import { ArticleRichText } from "./ArticleRichText";
 
-export function ArticleJsonLd({ article }: { article: Article }) {
+export function ArticleJsonLd({ article, coverSrc }: { article: Article; coverSrc?: string }) {
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -16,6 +18,7 @@ export function ArticleJsonLd({ article }: { article: Article }) {
         publisher: { "@type": "Organization", name: "TEDORI" },
         mainEntityOfPage: `${SITE_URL}/media/${article.slug}`,
         keywords: article.targetKeyword,
+        ...(coverSrc ? { image: `${SITE_URL}${coverSrc}` } : {}),
       },
       {
         "@type": "BreadcrumbList",
@@ -80,10 +83,39 @@ export function ArticleFaq({ article }: { article: Article }) {
         {article.faq.map((f) => (
           <div key={f.q} className="wf-card p-4">
             <dt className="font-semibold text-ink">{f.q}</dt>
-            <dd className="mt-2 text-[14px] leading-relaxed text-ink-2">{f.a}</dd>
+            <dd className="mt-2 text-[14px] leading-relaxed text-ink-2">
+              <ArticleRichText text={f.a} />
+            </dd>
           </div>
         ))}
       </dl>
+    </section>
+  );
+}
+
+export function ArticleReferences({ slug }: { slug: string }) {
+  const refs = getArticleReferences(slug);
+  if (refs.length === 0) return null;
+
+  return (
+    <section className="mt-12 border-t border-line pt-8">
+      <h2 className="text-[15px] font-bold text-ink">参考リンク（一次情報）</h2>
+      <p className="mt-1 text-[13px] text-muted">税務・制度の最新情報は必ず公式サイトで確認してください。</p>
+      <ul className="mt-4 space-y-3">
+        {refs.map((ref) => (
+          <li key={ref.url}>
+            <a
+              href={ref.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-lg border border-line px-4 py-3 hover:border-brand/30 hover:bg-brand-soft/20"
+            >
+              <p className="font-medium text-ink group-hover:text-brand">{ref.label}</p>
+              {ref.publisher && <p className="mt-0.5 text-[12px] text-muted">{ref.publisher}</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

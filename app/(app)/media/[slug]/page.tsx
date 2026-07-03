@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AffiliateCard } from "@/components/AffiliateCard";
-import { ArticleFaq, ArticleJsonLd, RelatedArticles } from "@/components/ArticleExtras";
+import {
+  ArticleFaq,
+  ArticleJsonLd,
+  ArticleReferences,
+  RelatedArticles,
+} from "@/components/ArticleExtras";
+import { ArticleRichText } from "@/components/ArticleRichText";
 import { ARTICLES, formatArticleDate, getArticle } from "@/lib/articles";
+import { getArticleCover } from "@/lib/articles/references";
 import { offersByIds } from "@/lib/affiliate";
 import { SITE_URL } from "@/lib/site";
 
@@ -19,6 +27,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
+  const cover = getArticleCover(slug);
   return {
     title: article.title,
     description: article.description,
@@ -29,6 +38,7 @@ export async function generateMetadata({
       title: article.title,
       description: article.description,
       url: `${SITE_URL}/media/${article.slug}`,
+      ...(cover ? { images: [{ url: `${SITE_URL}${cover.src}`, alt: cover.alt }] } : {}),
     },
   };
 }
@@ -43,10 +53,11 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   const offers = offersByIds(article.affiliateIds);
+  const cover = getArticleCover(slug);
 
   return (
     <>
-      <ArticleJsonLd article={article} />
+      <ArticleJsonLd article={article} coverSrc={cover?.src} />
       <article className="page-pad mx-auto max-w-[720px]">
         <nav className="text-[12px] text-muted" aria-label="パンくず">
           <Link href="/media" className="hover:text-brand">
@@ -56,18 +67,31 @@ export default async function ArticlePage({
           <span>{article.category}</span>
         </nav>
 
-        <div
-          className="mt-4 h-44 rounded-xl sm:h-52"
-          style={{
-            background: `linear-gradient(135deg, ${article.coverFrom}, ${article.coverTo})`,
-          }}
-          role="img"
-          aria-label={article.title}
-        />
+        {cover ? (
+          <div className="mt-4 overflow-hidden rounded-xl border border-line bg-surface">
+            <Image
+              src={cover.src}
+              alt={cover.alt}
+              width={800}
+              height={450}
+              className="h-44 w-full object-cover sm:h-52"
+              priority
+            />
+          </div>
+        ) : (
+          <div
+            className="mt-4 h-44 rounded-xl sm:h-52"
+            style={{
+              background: `linear-gradient(135deg, ${article.coverFrom}, ${article.coverTo})`,
+            }}
+            role="img"
+            aria-label={article.title}
+          />
+        )}
 
         <h1 className="mt-6 text-2xl font-bold leading-snug text-ink">{article.title}</h1>
         <p className="mt-3 text-[13px] text-muted">
-          {formatArticleDate(article.updated)} · {article.readMin}分 · キーワード: {article.targetKeyword}
+          {formatArticleDate(article.updated)} · 読了目安 {article.readMin}分 · {article.category}
         </p>
 
         <p className="mt-6 rounded-lg border border-line bg-bg px-4 py-3 text-[15px] leading-relaxed text-ink-2">
@@ -91,7 +115,7 @@ export default async function ArticlePage({
               <div className="mt-3 space-y-3">
                 {sec.body.map((p, i) => (
                   <p key={i} className="text-[15px] leading-[1.85] text-ink-2">
-                    {p}
+                    <ArticleRichText text={p} />
                   </p>
                 ))}
               </div>
@@ -100,6 +124,7 @@ export default async function ArticlePage({
         </div>
 
         <ArticleFaq article={article} />
+        <ArticleReferences slug={slug} />
 
         {offers.length > 0 && (
           <section className="mt-12 border-t border-line pt-8">

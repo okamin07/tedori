@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx lib/tax.test.ts"
+    "test": "tsx lib/tax.test.ts && tsx lib/article-markup.test.ts"
   },
   "dependencies": {
     "next": "16.2.10",

@@ -8,6 +8,12 @@ export interface ArticleFaq {
   a: string;
 }
 
+export interface ArticleReference {
+  label: string;
+  url: string;
+  publisher?: string;
+}
+
 export interface Article {
   slug: string;
   title: string;

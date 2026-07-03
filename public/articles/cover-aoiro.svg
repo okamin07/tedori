@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Rr3J">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#d1fae5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect x="90" y="110" width="280" height="230" rx="16" fill="#fff" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="120" y="155" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#047857">Rr</text>
+  <text x="120" y="195" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#059669">65</text>
+  <rect x="430" y="110" width="280" height="230" rx="16" fill="#fff" stroke="#d1d5db" stroke-width="2"/>
+  <text x="460" y="155" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#374151">}r</text>
+  <text x="460" y="195" font-family="system-ui,sans-serif" font-size="32" font-weight="700" fill="#6b7280">10</text>
+  <path d="M390 225 L410 225 L400 205 Z" fill="#10b981"/>
+</svg>

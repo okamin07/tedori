@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
@@ -8,6 +9,7 @@ import {
   formatArticleDate,
   type Article,
 } from "@/lib/articles";
+import { getArticleCover } from "@/lib/articles/references";
 
 export function MediaIndex() {
   const [query, setQuery] = useState("");
@@ -84,12 +86,26 @@ export function MediaIndex() {
 }
 
 function ArticleCard({ article }: { article: Article }) {
+  const cover = getArticleCover(article.slug);
+
   return (
     <Link href={`/media/${article.slug}`} className="article-card group flex h-full flex-col">
-      <div
-        className="article-card-cover shrink-0"
-        style={{ background: `linear-gradient(135deg, ${article.coverFrom}, ${article.coverTo})` }}
-      />
+      {cover ? (
+        <div className="article-card-cover shrink-0 overflow-hidden bg-surface">
+          <Image
+            src={cover.src}
+            alt={cover.alt}
+            width={400}
+            height={225}
+            className="h-full w-full object-cover transition group-hover:scale-[1.02]"
+          />
+        </div>
+      ) : (
+        <div
+          className="article-card-cover shrink-0"
+          style={{ background: `linear-gradient(135deg, ${article.coverFrom}, ${article.coverTo})` }}
+        />
+      )}
       <div className="flex flex-1 flex-col p-4">
         <span className="article-tag">{article.category}</span>
         <h2 className="mt-2 text-[15px] font-bold leading-snug text-ink group-hover:text-brand">
