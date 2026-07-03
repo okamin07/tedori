@@ -106,9 +106,6 @@ export function CompareDashboard() {
         <div>
           <p className="text-[13px] text-muted">{TAX_YEAR_LABEL}</p>
           <h1 className="page-title">副業・フリーランスの手取り比較</h1>
-          <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-ink-2">
-            数字を入力すると、申告区分を変えたときの手取り差がすぐわかります。
-          </p>
         </div>
         <div className="seg-track shrink-0 self-start">
           <button type="button" className="seg-btn" data-active={mode === "side"} onClick={() => { setMode("side"); clearPreset(); }}>
