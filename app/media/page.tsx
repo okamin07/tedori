@@ -3,11 +3,12 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ARTICLES } from "@/lib/articles";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "読みもの",
   description: "副業・フリーランスの税金、確定申告、節税、社会保険の解説。",
-  alternates: { canonical: "https://tedori.app/media" },
+  alternates: { canonical: `${SITE_URL}/media` },
 };
 
 export default function MediaIndex() {

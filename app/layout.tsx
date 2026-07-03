@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP, IBM_Plex_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -28,7 +29,7 @@ const SITE_DESC =
   "副業・フリーランスの手取りを試算。売上・経費・申告区分から、所得税・住民税・社会保険料を概算し、手取り額がわかる無料ツール。";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tedori.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "TEDORI｜手取り試算",
     template: "%s｜TEDORI",
@@ -49,11 +50,11 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: "TEDORI｜手取り試算",
     description: SITE_DESC,
-    url: "https://tedori.app",
+    url: SITE_URL,
   },
   twitter: { card: "summary_large_image", title: "TEDORI｜手取り試算", description: SITE_DESC },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://tedori.app" },
+  alternates: { canonical: SITE_URL },
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Simulator } from "@/components/Simulator";
 import { ARTICLES } from "@/lib/articles";
+import { SITE_URL } from "@/lib/site";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -16,7 +17,7 @@ const jsonLd = {
         "副業・フリーランスの手取りを試算する無料ツール。所得税・住民税・社会保険料を概算。",
       offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
       inLanguage: "ja",
-      url: "https://tedori.app",
+      url: SITE_URL,
     },
   ],
 };

@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { AffiliateCard } from "@/components/AffiliateCard";
 import { ARTICLES, getArticle } from "@/lib/articles";
 import { offersByIds } from "@/lib/affiliate";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -22,12 +23,12 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.description,
-    alternates: { canonical: `https://tedori.app/media/${article.slug}` },
+    alternates: { canonical: `${SITE_URL}/media/${article.slug}` },
     openGraph: {
       type: "article",
       title: article.title,
       description: article.description,
-      url: `https://tedori.app/media/${article.slug}`,
+      url: `${SITE_URL}/media/${article.slug}`,
     },
   };
 }
