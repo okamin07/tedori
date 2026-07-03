@@ -43,7 +43,6 @@ export function CompareDashboard() {
     altResult,
     altMeta,
     currentLabel,
-    takeHome,
     altTakeHome,
     diff,
   } = sim;

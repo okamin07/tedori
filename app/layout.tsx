@@ -41,6 +41,13 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "TEDORI｜手取りのもしも比較", description: SITE_DESC },
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({

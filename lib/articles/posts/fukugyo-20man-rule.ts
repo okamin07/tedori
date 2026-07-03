@@ -15,7 +15,7 @@ export const fukugyo20manRule: Article = {
   coverFrom: "#0ea5e9",
   coverTo: "#38bdf8",
   filterTag: "確定申告",
-  relatedSlugs: ["fukugyo-tax-basics", "juminzei-fukugyo", "fukugyo-tedori-simulator"],
+  relatedSlugs: ["fukugyo-tax-basics", "juminzei-fukugyo", "fukugyo-tedori-simulator", "fukugyo-kakutei-shinkoku", "fukugyo-bare-tax"],
   faq: [
     {
       q: "副業所得が19万円なら確定申告は不要？",

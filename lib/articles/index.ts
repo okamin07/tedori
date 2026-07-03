@@ -13,6 +13,10 @@ import { freelance500manTedori } from "./posts/freelance-500man-tedori";
 import { accountingSoftFukugyo } from "./posts/accounting-soft-fukugyo";
 import { juminzeiFukugyo } from "./posts/juminzei-fukugyo";
 import { keihiFukugyoList } from "./posts/keihi-fukugyo-list";
+import { fukugyoKakuteiShinkoku } from "./posts/fukugyo-kakutei-shinkoku";
+import { fukugyoBareTax } from "./posts/fukugyo-bare-tax";
+import { freelance1000manTedori } from "./posts/freelance-1000man-tedori";
+import { invoiceMenzeiTedori } from "./posts/invoice-menzei-tedori";
 
 /** tool-intent → informational → commercial */
 export const ARTICLES: Article[] = [
@@ -20,12 +24,16 @@ export const ARTICLES: Article[] = [
   freelanceTedoriSimulator,
   fukugyoTaxBasics,
   fukugyo20manRule,
+  fukugyoKakuteiShinkoku,
+  fukugyoBareTax,
   juminzeiFukugyo,
   keihiFukugyoList,
+  invoiceMenzeiTedori,
   aoiro65Benefit,
   aoiroVsShiroTedori,
   freelanceInsuranceBasics,
   freelance500manTedori,
+  freelance1000manTedori,
   accountingSoftFukugyo,
 ];
 

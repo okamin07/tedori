@@ -15,7 +15,7 @@ export const freelance500manTedori: Article = {
   coverFrom: "#9333ea",
   coverTo: "#c084fc",
   filterTag: "フリーランス",
-  relatedSlugs: ["freelance-tedori-simulator", "freelance-insurance-basics", "aoiro-65-benefit"],
+  relatedSlugs: ["freelance-tedori-simulator", "freelance-insurance-basics", "aoiro-65-benefit", "freelance-1000man-tedori"],
   faq: [
     {
       q: "フリーランス売上500万の手取りはいくら？",

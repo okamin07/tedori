@@ -15,7 +15,7 @@ export const fukugyoTaxBasics: Article = {
   coverFrom: "#6366f1",
   coverTo: "#818cf8",
   filterTag: "副業",
-  relatedSlugs: ["fukugyo-20man-rule", "fukugyo-tedori-simulator", "juminzei-fukugyo"],
+  relatedSlugs: ["fukugyo-20man-rule", "fukugyo-tedori-simulator", "juminzei-fukugyo", "fukugyo-kakutei-shinkoku"],
   faq: [
     {
       q: "副業50万円稼いだら税金はいくら？",

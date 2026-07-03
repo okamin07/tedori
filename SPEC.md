@@ -132,14 +132,18 @@
 | freelance-insurance-basics | フリーランス 社会保険 いくら | Know |
 | freelance-500man-tedori | フリーランス 500万 手取り | Compare |
 | accounting-soft-fukugyo | 副業 確定申告 ソフト おすすめ | Commercial |
+| fukugyo-kakutei-shinkoku | 副業 確定申告 やり方 | Do |
+| fukugyo-bare-tax | 副業 バレる 税金 | Know |
+| freelance-1000man-tedori | フリーランス 1000万 手取り | Compare |
+| invoice-menzei-tedori | インボイス 免税 手取り | Know |
 
 ### コンテンツ拡張ロードマップ（Phase 2）
 
-- 副業 確定申告 やり方
-- 会社員 副業 バレる 税金
-- 売上 1000万 手取り フリーランス
-- インボイス 免税 手取り
-- 各記事 2,000字+ へリライト
+- [x] 副業 確定申告 やり方 → `fukugyo-kakutei-shinkoku`
+- [x] 会社員 副業 バレる 税金 → `fukugyo-bare-tax`
+- [x] 売上 1000万 手取り フリーランス → `freelance-1000man-tedori`
+- [x] インボイス 免税 手取り → `invoice-menzei-tedori`
+- [ ] 各記事 2,000字+ へリライト（継続）
 
 ---
 
@@ -162,7 +166,7 @@ Next.js 16 / App Router / SSG記事 / JSON-LD / sitemap / Vercel
 
 | 指標 | 目標 |
 |---|---|
-| インデックス記事数 | 11+ |
+| インデックス記事数 | 15+ |
 | オーガニックセッション | 月5,000（3ヶ月後） |
 | ツール利用率 | 流入の40%+ |
 | アフィリCTR | 記事PVの2%+ |
@@ -175,6 +179,9 @@ Next.js 16 / App Router / SSG記事 / JSON-LD / sitemap / Vercel
 - [x] 記事11本・FAQ・内部リンク
 - [x] Article/FAQ/Breadcrumb JSON-LD
 - [x] ツール同一ページ入力
-- [ ] ASPリンク本番差し替え
-- [ ] Search Console 登録・インデックス申請
-- [ ] Phase2記事追加
+- [x] ASPリンク env 化（公式LPフォールバック、Vercelで差し替え）
+- [x] Search Console 対応（`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`）
+- [x] Phase2記事4本追加
+- [ ] Search Console 登録・インデックス申請（手動）
+- [ ] ASP計測リンクをVercel envに設定
+- [ ] 各記事 2,000字+ リライト
