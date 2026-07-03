@@ -103,7 +103,7 @@ export default async function ArticlePage({
           <p className="mt-1 text-[13px] text-ink-2">
             本業年収・売上・経費を入れると、手取りと申告区分の差がすぐわかります。
           </p>
-          <Link href="/#tool" className="btn-primary mt-3 inline-block">
+          <Link href="/#inputs" className="btn-primary mt-3 inline-block">
             手取り比較ツール →
           </Link>
         </div>

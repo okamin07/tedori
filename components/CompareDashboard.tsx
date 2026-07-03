@@ -54,6 +54,11 @@ export function CompareDashboard() {
         ? `${altMeta.label}の方が有利です`
         : "差はほとんどありません";
 
+  const inputSummary =
+    mode === "freelance"
+      ? `売上 ${yen(sim.revenue)} / 経費 ${yen(sim.expenses)} / ${FILING_LABELS[sim.filing]}`
+      : `本業 ${yen(sim.salary)} / 副業売上 ${yen(sim.sideRev)} / 経費 ${yen(sim.sideExp)} / ${FILING_LABELS[sim.sideFiling]}`;
+
   const compareLines = useMemo(() => {
     if (mode === "freelance") {
       return freelanceCompareLines(
@@ -100,11 +105,28 @@ export function CompareDashboard() {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <p className="text-[13px] text-muted">{TAX_YEAR_LABEL}</p>
-          <h1 className="page-title">
-            副業・フリーランスの手取り比較
-          </h1>
+          <h1 className="page-title">副業・フリーランスの手取り比較</h1>
           <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-ink-2">
-            申告区分を変えたら手取りがいくら変わるか、2シナリオで並べて確認。Geminiの概算より再現性のある試算です。
+            数字を入力すると、申告区分を変えたときの手取り差がすぐわかります。
+          </p>
+        </div>
+        <div className="seg-track shrink-0 self-start">
+          <button type="button" className="seg-btn" data-active={mode === "side"} onClick={() => { setMode("side"); clearPreset(); }}>
+            副業
+          </button>
+          <button type="button" className="seg-btn" data-active={mode === "freelance"} onClick={() => { setMode("freelance"); clearPreset(); }}>
+            独立
+          </button>
+        </div>
+      </div>
+
+      <section id="inputs" className="wf-card scroll-mt-20">
+        <div className="border-b border-line px-5 py-4 sm:px-6">
+          <h2 className="text-[15px] font-bold text-ink">試算条件を入力</h2>
+          <p className="mt-1 text-[13px] text-ink-2">
+            {mode === "side"
+              ? "本業の年収と副業の売上・経費を入れてください。"
+              : "独立（個人事業）の売上・経費・申告区分を入れてください。"}
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {modePresets.map((p) => (
@@ -120,26 +142,7 @@ export function CompareDashboard() {
             ))}
           </div>
         </div>
-        <div className="seg-track shrink-0 self-start">
-          <button type="button" className="seg-btn" data-active={mode === "side"} onClick={() => { setMode("side"); clearPreset(); }}>
-            副業
-          </button>
-          <button type="button" className="seg-btn" data-active={mode === "freelance"} onClick={() => { setMode("freelance"); clearPreset(); }}>
-            独立
-          </button>
-        </div>
-      </div>
-
-      <SummaryHero diff={diff} advantageLabel={advantageLabel} monthlyDiff={Math.round(diff / 12)} stars={recommendStars(Math.abs(diff))} />
-      <ScenarioCompareRow current={scenarioCards.current} alternate={scenarioCards.alternate} />
-      <BreakdownCompareBars items={compareLines} currentLabel={currentLabel} altLabel={altMeta.label} />
-      <DeltaTableWireframe items={compareLines} currentLabel={currentLabel} altLabel={altMeta.label} />
-
-      <details className="wf-card group" open>
-        <summary className="cursor-pointer px-5 py-4 font-bold text-ink sm:px-6">
-          試算条件を入力
-        </summary>
-        <div className="border-t border-line px-5 pb-5 sm:px-6">
+        <div className="px-5 py-2 sm:px-6">
           {mode === "freelance" ? (
             <>
               <Field label="年間売上" value={sim.revenue} onChange={(v) => { sim.setRevenue(v); clearPreset(); }} />
@@ -166,7 +169,17 @@ export function CompareDashboard() {
             </>
           )}
         </div>
-      </details>
+      </section>
+
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="text-[15px] font-bold text-ink">比較結果</h2>
+        <p className="text-[12px] text-muted">{inputSummary}</p>
+      </div>
+
+      <SummaryHero diff={diff} advantageLabel={advantageLabel} monthlyDiff={Math.round(diff / 12)} stars={recommendStars(Math.abs(diff))} />
+      <ScenarioCompareRow current={scenarioCards.current} alternate={scenarioCards.alternate} />
+      <BreakdownCompareBars items={compareLines} currentLabel={currentLabel} altLabel={altMeta.label} />
+      <DeltaTableWireframe items={compareLines} currentLabel={currentLabel} altLabel={altMeta.label} />
 
       <ContextualCta {...insight} />
 

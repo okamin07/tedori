@@ -37,7 +37,7 @@ export function MediaIndex() {
       <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-2">
         副業の税金・手取り計算、青色申告65万控除、住民税、確定申告ソフト選びまで。
         検索意図別に整理した解説記事です。数字は
-        <Link href="/#tool" className="font-semibold text-brand hover:underline">
+          <Link href="/#inputs" className="font-semibold text-brand hover:underline">
           手取り比較ツール
         </Link>
         で試算できます。
@@ -77,7 +77,7 @@ export function MediaIndex() {
         <p className="mt-2 text-[13px] text-ink-2">
           記事を読む前に、自分の本業年収・副業売上・経費を入れて手取りの差を確認するのが早いです。
         </p>
-        <Link href="/#tool" className="btn-primary mt-4 inline-block">
+        <Link href="/#inputs" className="btn-primary mt-4 inline-block">
           手取り比較ツールを開く
         </Link>
       </section>
