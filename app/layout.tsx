@@ -12,7 +12,7 @@ const notoSansJP = Noto_Sans_JP({
 
 const SITE_NAME = "TEDORI";
 const SITE_DESC =
-  "副業・独立の手取りをシナリオ比較。申告区分や売上の変化でいくら変わるか、差分で試算する無料ツール。";
+  "副業・フリーランスの手取りを2シナリオで比較。青色申告と白色の差、税金・社保控除後の手取りを無料試算。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

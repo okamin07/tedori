@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AffiliateCard } from "@/components/AffiliateCard";
+import { ArticleFaq, ArticleJsonLd, RelatedArticles } from "@/components/ArticleExtras";
 import { ARTICLES, formatArticleDate, getArticle } from "@/lib/articles";
 import { offersByIds } from "@/lib/affiliate";
 import { SITE_URL } from "@/lib/site";
@@ -21,6 +22,7 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.description,
+    keywords: [article.targetKeyword, article.category, "手取り", "副業", "フリーランス"],
     alternates: { canonical: `${SITE_URL}/media/${article.slug}` },
     openGraph: {
       type: "article",
@@ -43,67 +45,80 @@ export default async function ArticlePage({
   const offers = offersByIds(article.affiliateIds);
 
   return (
-    <article className="page-pad mx-auto max-w-[720px]">
-      <nav className="text-[12px] text-muted">
-        <Link href="/media" className="hover:text-brand">
-          読みもの
-        </Link>
-        <span className="mx-2">/</span>
-        {article.category}
-      </nav>
+    <>
+      <ArticleJsonLd article={article} />
+      <article className="page-pad mx-auto max-w-[720px]">
+        <nav className="text-[12px] text-muted" aria-label="パンくず">
+          <Link href="/media" className="hover:text-brand">
+            読みもの
+          </Link>
+          <span className="mx-2">/</span>
+          <span>{article.category}</span>
+        </nav>
 
-      <div
-        className="mt-4 h-40 rounded-xl sm:h-48"
-        style={{
-          background: `linear-gradient(135deg, ${article.coverFrom}, ${article.coverTo})`,
-        }}
-      />
+        <div
+          className="mt-4 h-44 rounded-xl sm:h-52"
+          style={{
+            background: `linear-gradient(135deg, ${article.coverFrom}, ${article.coverTo})`,
+          }}
+          role="img"
+          aria-label={article.title}
+        />
 
-      <h1 className="mt-6 text-2xl font-bold leading-snug text-ink sm:text-[1.75rem]">
-        {article.title}
-      </h1>
-      <p className="mt-3 text-[13px] text-muted">
-        {formatArticleDate(article.updated)} · {article.readMin}分で読める
-      </p>
+        <h1 className="mt-6 text-2xl font-bold leading-snug text-ink">{article.title}</h1>
+        <p className="mt-3 text-[13px] text-muted">
+          {formatArticleDate(article.updated)} · {article.readMin}分 · キーワード: {article.targetKeyword}
+        </p>
 
-      <p className="mt-6 text-[16px] leading-relaxed text-ink-2">{article.description}</p>
+        <p className="mt-6 rounded-lg border border-line bg-bg px-4 py-3 text-[15px] leading-relaxed text-ink-2">
+          {article.description}
+        </p>
 
-      <div className="my-8 wf-card border-brand/20 bg-brand-soft/40 p-4">
-        <p className="text-[13px] font-semibold text-ink">自分の数字を比較する</p>
-        <Link href="/" className="mt-1 inline-block text-[13px] font-semibold text-brand">
-          比較ダッシュボードを開く →
-        </Link>
-      </div>
+        <div className="my-8 wf-card border-brand/25 bg-brand-soft/50 p-4 sm:p-5">
+          <p className="text-[14px] font-bold text-ink">自分の数字で試算する</p>
+          <p className="mt-1 text-[13px] text-ink-2">
+            本業年収・売上・経費を入れると、手取りと申告区分の差がすぐわかります。
+          </p>
+          <Link href="/#tool" className="btn-primary mt-3 inline-block">
+            手取り比較ツール →
+          </Link>
+        </div>
 
-      <div className="flex flex-col gap-8">
-        {article.sections.map((sec) => (
-          <section key={sec.heading}>
-            <h2 className="text-lg font-bold text-ink">{sec.heading}</h2>
-            <div className="mt-3 space-y-3">
-              {sec.body.map((p, i) => (
-                <p key={i} className="text-[15px] leading-[1.85] text-ink-2">
-                  {p}
-                </p>
+        <div className="prose-tedori flex flex-col gap-10">
+          {article.sections.map((sec) => (
+            <section key={sec.heading}>
+              <h2 className="text-lg font-bold text-ink">{sec.heading}</h2>
+              <div className="mt-3 space-y-3">
+                {sec.body.map((p, i) => (
+                  <p key={i} className="text-[15px] leading-[1.85] text-ink-2">
+                    {p}
+                  </p>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <ArticleFaq article={article} />
+
+        {offers.length > 0 && (
+          <section className="mt-12 border-t border-line pt-8">
+            <h2 className="text-[15px] font-bold text-ink">関連サービス</h2>
+            <p className="mt-1 text-[13px] text-muted">試算結果に基づく次の一手（アフィリエイト）</p>
+            <div className="mt-4">
+              {offers.map((o) => (
+                <AffiliateCard key={o.id} offer={o} />
               ))}
             </div>
           </section>
-        ))}
-      </div>
+        )}
 
-      {offers.length > 0 && (
-        <section className="mt-12 border-t border-line pt-8">
-          <h2 className="text-[13px] font-semibold text-muted">関連</h2>
-          <div className="mt-2">
-            {offers.map((o) => (
-              <AffiliateCard key={o.id} offer={o} />
-            ))}
-          </div>
-        </section>
-      )}
+        <RelatedArticles slug={slug} />
 
-      <p className="mt-10 text-[11px] text-muted">
-        一般的な情報提供であり、税務上の助言ではありません。
-      </p>
-    </article>
+        <p className="mt-10 text-[11px] leading-relaxed text-muted">
+          一般的な情報提供であり、税務上の助言ではありません。最新の法令・自治体ルールは必ず公式情報で確認してください。
+        </p>
+      </article>
+    </>
   );
 }
