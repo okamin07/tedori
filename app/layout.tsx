@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, IBM_Plex_Mono } from "next/font/google";
+import { Noto_Sans_JP, IBM_Plex_Mono } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -7,13 +7,6 @@ const notoSansJP = Noto_Sans_JP({
   variable: "--font-jp",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const notoSerifJP = Noto_Serif_JP({
-  variable: "--font-serif-jp",
-  subsets: ["latin"],
-  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -26,12 +19,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const SITE_NAME = "TEDORI";
 const SITE_DESC =
-  "副業・フリーランスの手取りを試算。売上・経費・申告区分から、所得税・住民税・社会保険料を概算し、手取り額がわかる無料ツール。";
+  "副業・独立の手取りをシナリオ比較。申告区分や売上の変化でいくら変わるか、差分で試算する無料ツール。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "TEDORI｜手取り試算",
+    default: "TEDORI｜手取りのもしも比較",
     template: "%s｜TEDORI",
   },
   description: SITE_DESC,
@@ -48,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: SITE_NAME,
-    title: "TEDORI｜手取り試算",
+    title: "TEDORI｜手取りのもしも比較",
     description: SITE_DESC,
     url: SITE_URL,
   },
@@ -63,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${notoSerifJP.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      className={`${notoSansJP.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

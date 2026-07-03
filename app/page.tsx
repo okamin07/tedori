@@ -14,7 +14,7 @@ const jsonLd = {
       applicationCategory: "FinanceApplication",
       operatingSystem: "Web",
       description:
-        "副業・フリーランスの手取りを試算する無料ツール。所得税・住民税・社会保険料を概算。",
+        "副業・フリーランスの手取りをシナリオ比較。申告区分や売上の変化による差分を並べて試算。",
       offers: { "@type": "Offer", price: "0", priceCurrency: "JPY" },
       inLanguage: "ja",
       url: SITE_URL,
@@ -31,33 +31,25 @@ export default function Home() {
       />
       <Header />
       <main className="flex-1">
-        <div className="mx-auto max-w-5xl px-5 py-10 sm:px-8 sm:py-14">
+        <div className="mx-auto max-w-lg px-4 py-6 sm:max-w-2xl sm:py-8">
           <Simulator />
         </div>
 
-        <section className="border-t border-line-strong bg-paper-2">
-          <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8">
+        <section className="border-t border-line bg-surface">
+          <div className="mx-auto max-w-lg px-4 py-8 sm:max-w-2xl">
             <div className="flex items-baseline justify-between">
-              <h2 className="serif text-xl font-bold text-ink">読みもの</h2>
-              <Link href="/media" className="text-[13px] text-ink-2 hover:text-ink">
-                一覧 →
+              <h2 className="text-[13px] font-semibold text-ink">読みもの</h2>
+              <Link href="/media" className="text-[12px] text-brand hover:underline">
+                すべて
               </Link>
             </div>
-            <div className="mt-4">
-              {ARTICLES.map((a) => (
-                <Link key={a.slug} href={`/media/${a.slug}`} className="article-row group">
-                  <span className="text-[11px] leading-snug text-muted">{a.category}</span>
-                  <div>
-                    <h3 className="font-medium leading-snug text-ink group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
-                      {a.title}
-                    </h3>
-                    <p className="mt-1 hidden text-[13px] text-muted sm:block line-clamp-1">
-                      {a.description}
-                    </p>
-                  </div>
-                  <span className="hidden self-center text-[11px] text-muted sm:block">
-                    {a.readMin}分
-                  </span>
+            <div className="mt-2">
+              {ARTICLES.slice(0, 2).map((a) => (
+                <Link key={a.slug} href={`/media/${a.slug}`} className="article-row group block">
+                  <p className="text-[15px] font-medium text-ink group-hover:text-brand">
+                    {a.title}
+                  </p>
+                  <p className="mt-0.5 text-[12px] text-muted">{a.readMin}分 · {a.category}</p>
                 </Link>
               ))}
             </div>

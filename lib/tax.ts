@@ -226,3 +226,102 @@ export function calcSide(input: SideInput): SideBreakdown {
     needsFiling: sideIncome > 200_000,
   };
 }
+
+/** 売上を段階的に増やしたときの手取り増分 */
+export interface RevenueStep {
+  revenue: number;
+  takeHome: number;
+  increment: number; // 前ステップからの手取り増分
+  marginalTakeHomeRate: number; // 増分売上に対する手取り率
+}
+
+export function freelanceRevenueSteps(
+  base: FreelanceInput,
+  steps = 5,
+  stepAmount = 100_000
+): RevenueStep[] {
+  const start = Math.max(0, base.revenue);
+  const rows: RevenueStep[] = [];
+  let prevTakeHome = calcFreelance({ ...base, revenue: start }).takeHome;
+
+  for (let i = 0; i <= steps; i++) {
+    const revenue = start + stepAmount * i;
+    const takeHome = calcFreelance({ ...base, revenue }).takeHome;
+    const increment = i === 0 ? 0 : takeHome - prevTakeHome;
+    rows.push({
+      revenue,
+      takeHome,
+      increment,
+      marginalTakeHomeRate:
+        i === 0 || stepAmount === 0 ? 0 : increment / stepAmount,
+    });
+    prevTakeHome = takeHome;
+  }
+  return rows;
+}
+
+export function sideRevenueSteps(
+  base: SideInput,
+  steps = 5,
+  stepAmount = 100_000
+): RevenueStep[] {
+  const start = Math.max(0, base.sideRevenue);
+  const rows: RevenueStep[] = [];
+  let prevTakeHome = calcSide({ ...base, sideRevenue: start }).sideTakeHome;
+
+  for (let i = 0; i <= steps; i++) {
+    const sideRevenue = start + stepAmount * i;
+    const takeHome = calcSide({ ...base, sideRevenue }).sideTakeHome;
+    const increment = i === 0 ? 0 : takeHome - prevTakeHome;
+    rows.push({
+      revenue: sideRevenue,
+      takeHome,
+      increment,
+      marginalTakeHomeRate:
+        i === 0 || stepAmount === 0 ? 0 : increment / stepAmount,
+    });
+    prevTakeHome = takeHome;
+  }
+  return rows;
+}
+
+/** 申告区分を変えた場合の比較用ラベル */
+export function alternateFiling(current: FilingType): {
+  filing: FilingType;
+  label: string;
+} {
+  if (current === "white") {
+    return { filing: "blue65", label: "青色65万円控除" };
+  }
+  return { filing: "white", label: "白色申告" };
+}
+
+export interface CompareResult {
+  label: string;
+  takeHome: number;
+  diff: number;
+}
+
+export function compareFreelanceFiling(
+  input: FreelanceInput
+): CompareResult {
+  const alt = alternateFiling(input.filing);
+  const current = calcFreelance(input);
+  const other = calcFreelance({ ...input, filing: alt.filing });
+  return {
+    label: alt.label,
+    takeHome: other.takeHome,
+    diff: current.takeHome - other.takeHome,
+  };
+}
+
+export function compareSideFiling(input: SideInput): CompareResult {
+  const alt = alternateFiling(input.filing);
+  const current = calcSide(input);
+  const other = calcSide({ ...input, filing: alt.filing });
+  return {
+    label: alt.label,
+    takeHome: other.sideTakeHome,
+    diff: current.sideTakeHome - other.sideTakeHome,
+  };
+}
