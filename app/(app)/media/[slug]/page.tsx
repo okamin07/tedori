@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AffiliateCard } from "@/components/AffiliateCard";
+import { ArticleCoverImage } from "@/components/ArticleCoverImage";
 import {
   ArticleFaq,
   ArticleJsonLd,
@@ -69,11 +69,9 @@ export default async function ArticlePage({
 
         {cover ? (
           <div className="mt-4 overflow-hidden rounded-xl border border-line bg-surface">
-            <Image
+            <ArticleCoverImage
               src={cover.src}
               alt={cover.alt}
-              width={800}
-              height={450}
               className="h-44 w-full object-cover sm:h-52"
               priority
             />

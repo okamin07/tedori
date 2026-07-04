@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { ArticleCoverImage } from "@/components/ArticleCoverImage";
 import {
   ARTICLE_FILTERS,
   ARTICLES,
@@ -92,11 +92,9 @@ function ArticleCard({ article }: { article: Article }) {
     <Link href={`/media/${article.slug}`} className="article-card group flex h-full flex-col">
       {cover ? (
         <div className="article-card-cover shrink-0 overflow-hidden bg-surface">
-          <Image
+          <ArticleCoverImage
             src={cover.src}
             alt={cover.alt}
-            width={400}
-            height={225}
             className="h-full w-full object-cover transition group-hover:scale-[1.02]"
           />
         </div>
